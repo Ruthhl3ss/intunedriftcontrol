@@ -108,7 +108,7 @@ Describe "Compare SettingsCatalog Settings Files" -Tag 'SettingsCatalog' {
 
     if ($differences.Count -gt 0) {
       Write-Verbose "`nDifferences found:"
-      $differences.Values | Format-Table -AutoSize | Out-String | Write-Output
+      $differences.Values | Format-Table -AutoSize | Out-String | Write-Host
     }
 
     $differences.Count | Should -Be 0 -Because "There should be no differences between the reference and compare files after filtering."
