@@ -1,10 +1,19 @@
 
 [CmdletBinding()]
 param (
-    [Parameter(Mandatory = $true)][string]$referencefile,
-    [Parameter(Mandatory = $true)][string]$comparefile,
-    [Parameter(Mandatory = $true)][ValidateSet('SettingsCatalog', 'DeviceCompliance','DeviceConfiguration')][string]$type
+  [Parameter(Mandatory = $true)][string]$referencefile,
+  [Parameter(Mandatory = $true)][string]$comparefile,
+  [Parameter(Mandatory = $true)][ValidateSet('SettingsCatalog', 'DeviceCompliance', 'DeviceConfiguration')][string]$type
 )
+
+#check if the Pester module is installed
+if (-not (Get-Module -ListAvailable -Name Pester)) {
+  Install-Module Pester -Force
+  Write-Output "Pester module installed successfully."
+}
+# Import the Pester module
+Import-Module Pester -Force
+
 
 switch ($type) {
   SettingsCatalog {
